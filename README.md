@@ -8,7 +8,9 @@
 > .../webservice> ./.venv/Scripts/activate
 
 ### Installer les bibliothèques python
-> .../webservice> pip install -r requirement.txt
+> .../webservice/.venv/Scripts> cd ../..
+> .../webservice> python.exe -m pip install --upgrade pip
+> .../webservice> pip install -r requirements.txt
 
 ### Lancer l'app flask
 > .../webservice> flask --app app run

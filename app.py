@@ -2,14 +2,25 @@ from collections import defaultdict
 from flask import Flask,render_template, request,jsonify
 from flask_mysqldb import MySQL
 
-app = Flask(__name__)
+with open("codehypersecret.fuck") as file:
+    mdp = file.read()
+iiens = True
 
-app.config["JSON_SORT_KEYS"] = False
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'secf'
- 
+app = Flask(__name__)
+if iiens:
+    app.config["JSON_SORT_KEYS"] = False
+    app.config['MYSQL_HOST'] = 'mysql.iiens.net'
+    app.config['MYSQL_USER'] = 'root'
+    app.config['MYSQL_PASSWORD'] = mdp
+    app.config['MYSQL_DB'] = 'e_mennessi2021'
+else:
+    app.config["JSON_SORT_KEYS"] = False
+    app.config['MYSQL_HOST'] = 'localhost'
+    app.config['MYSQL_USER'] = 'root'
+    app.config['MYSQL_PASSWORD'] = ''
+    app.config['MYSQL_DB'] = 'secf'
+
+
 mysql = MySQL(app)
 
 @app.route("/")
