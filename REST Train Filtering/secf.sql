@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 04 jan. 2023 à 14:30
+-- Généré le : dim. 15 jan. 2023 à 19:35
 -- Version du serveur : 10.4.24-MariaDB
 -- Version de PHP : 8.1.6
 
@@ -41,8 +41,11 @@ CREATE TABLE `seat_info` (
 --
 
 INSERT INTO `seat_info` (`id`, `train_id`, `first_class_seat`, `business_class_seat`, `standard_class_seat`, `all_seats`) VALUES
-(1, 1003, 12, 100, 356, 468),
-(5, 1005, 10, 20, 50, 80);
+(1, 1001, 3, 100, 356, 459),
+(5, 1005, 7, 20, 50, 77),
+(6, 1004, 5, 20, 50, 80),
+(7, 1006, 10, 20, 50, 80),
+(8, 1010, 14, 100, 356, 470);
 
 -- --------------------------------------------------------
 
@@ -51,20 +54,25 @@ INSERT INTO `seat_info` (`id`, `train_id`, `first_class_seat`, `business_class_s
 --
 
 CREATE TABLE `train_info` (
-  `id` int(10) NOT NULL,
+  `id` int(11) NOT NULL,
   `departure_station` varchar(400) DEFAULT NULL,
   `arrival_station` varchar(400) DEFAULT NULL,
-  `date` date DEFAULT NULL,
-  `time` time(4) DEFAULT NULL
+  `departure_date` date DEFAULT NULL,
+  `departure_time` time DEFAULT NULL,
+  `flex` tinyint(1) DEFAULT NULL,
+  `price` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `train_info`
 --
 
-INSERT INTO `train_info` (`id`, `departure_station`, `arrival_station`, `date`, `time`) VALUES
-(1003, 'Aéroport Charles-de-Gaulle 2 TGV', 'Reims', '2023-02-08', '21:33:24.0000'),
-(1005, 'Reims', 'La_Roche-sur-Yon', '2023-02-21', '12:02:00.0000');
+INSERT INTO `train_info` (`id`, `departure_station`, `arrival_station`, `departure_date`, `departure_time`, `flex`, `price`) VALUES
+(1001, 'Reims', 'Paris', '2023-01-18', '10:44:00', 0, 56.3),
+(1004, 'Paris', 'Marseille', '2023-01-15', '15:22:00', 0, 130),
+(1005, 'Paris', 'Reims', '2023-01-20', '11:24:00', 1, 75.1),
+(1006, 'Paris', 'Reims', '2023-01-20', '13:24:00', 1, 78.3),
+(1010, 'Reims', 'Paris', '2023-01-26', '12:13:00', 0, 55.4);
 
 --
 -- Index pour les tables déchargées
@@ -81,7 +89,7 @@ ALTER TABLE `seat_info`
 -- Index pour la table `train_info`
 --
 ALTER TABLE `train_info`
-  ADD UNIQUE KEY `id` (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -91,23 +99,13 @@ ALTER TABLE `train_info`
 -- AUTO_INCREMENT pour la table `seat_info`
 --
 ALTER TABLE `seat_info`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT pour la table `train_info`
 --
 ALTER TABLE `train_info`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1006;
-
---
--- Contraintes pour les tables déchargées
---
-
---
--- Contraintes pour la table `seat_info`
---
-ALTER TABLE `seat_info`
-  ADD CONSTRAINT `seat_info_ibfk_1` FOREIGN KEY (`train_id`) REFERENCES `train_info` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1011;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

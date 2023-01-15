@@ -1,0 +1,741 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Train gestion API",
+    "description": "API to manage trains. \nThe filter part can filter from stations, dates, times, and return, in function of available seats. \nThe Update part can update the seats of a train when a reservation is made.",
+    "version": "alpha"
+  },
+  "paths": {
+    "/trains": {
+      "get": {
+        "tags": [
+          "train filter"
+        ],
+        "summary": "Get all trains from the database",
+        "description": "Retrieves all trains informations from the database",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/all_train"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/train/depart/<departure_station>": {
+      "get": {
+        "tags": [
+          "train filter"
+        ],
+        "summary": "Get all trains with defined departure station",
+        "description": "Retrieves all trains informations with defined departure station",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/all_train"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Incorrect data"
+          },
+          "404": {
+            "description": "No trains available"
+          }
+        }
+      }
+    },
+    "/train/depart/<departure_station>/classe/<classe>/places/<nb_ticket>": {
+      "get": {
+        "tags": [
+          "train filter"
+        ],
+        "summary": "Get all trains with a defined departure station taking into account the number of seats and in the defined class",
+        "description": "Retrieves all trains informations with a defined departure station taking into account the number of seats and in the defined class",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/all_train"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Incorrect data"
+          },
+          "404": {
+            "description": "No trains available"
+          }
+        }
+      }
+    },
+    "/train/depart/<departure_station>/date/<departure_date>": {
+      "get": {
+        "tags": [
+          "train filter"
+        ],
+        "summary": "Get all trains with a defined departure station taking into account the departure date",
+        "description": "Retrieves all trains informations with a defined departure station taking into account the departure date",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/all_train"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Incorrect data"
+          },
+          "404": {
+            "description": "No trains available"
+          }
+        }
+      }
+    },
+    "/train/depart/<departure_station>/date/<departure_date>/classe/<classe>/places/<nb_ticket>": {
+      "get": {
+        "tags": [
+          "train filter"
+        ],
+        "summary": "Get all trains with a defined departure station taking into account the departure date, number of seats and in the defined class",
+        "description": "Retrieves all trains informations with a defined departure station taking into account the departure date, number of seats and in the defined class",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/all_train"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Incorrect data"
+          },
+          "404": {
+            "description": "No trains available"
+          }
+        }
+      }
+    },
+    "/train/depart/<departure_station>/date/<departure_date>/heure/<departure_time>": {
+      "get": {
+        "tags": [
+          "train filter"
+        ],
+        "summary": "Get all trains with a defined departure station taking into account the departure date and time",
+        "description": "Retrieves all trains informations with a defined departure station taking into account the departure date and time",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/all_train"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Incorrect data"
+          },
+          "404": {
+            "description": "No trains available"
+          }
+        }
+      }
+    },
+    "/train/depart/<departure_station>/date/<departure_date>/heure/<departure_time>/classe/<classe>/places/<nb_ticket>": {
+      "get": {
+        "tags": [
+          "train filter"
+        ],
+        "summary": "Get all trains with a defined departure station taking into account the departure date and time, number of seats and in the defined class",
+        "description": "Retrieves all trains informations with a defined departure station taking into account the departure date and time, number of seats and in the defined class",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/all_train"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Incorrect data"
+          },
+          "404": {
+            "description": "No trains available"
+          }
+        }
+      }
+    },
+    "/train/depart/<departure_station>/arrive/<arrival_station>": {
+      "get": {
+        "tags": [
+          "train filter"
+        ],
+        "summary": "Get all trains with defined departure and arrival stations",
+        "description": "Retrieves all trains informations with defined departure and arrival stations",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/all_train"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Incorrect data"
+          },
+          "404": {
+            "description": "No trains available"
+          }
+        }
+      }
+    },
+    "/train/depart/<departure_station>/arrive/<arrival_station>/classe/<classe>/places/<nb_ticket>": {
+      "get": {
+        "tags": [
+          "train filter"
+        ],
+        "summary": "Get all trains with a defined departure and arrival stations taking into account the number of seats and in the defined class",
+        "description": "Retrieves all trains informations with a defined departure and arrival stations taking into account the number of seats and in the defined class",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/all_train"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Incorrect data"
+          },
+          "404": {
+            "description": "No trains available"
+          }
+        }
+      }
+    },
+    "/train/depart/<departure_station>/arrive/<arrival_station>/date/<departure_date>": {
+      "get": {
+        "tags": [
+          "train filter"
+        ],
+        "summary": "Get all trains with a defined departure and arrival stations taking into account the departure date",
+        "description": "Retrieves all trains informations with a defined departure and arrival stations taking into account the departure date",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/all_train"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Incorrect data"
+          },
+          "404": {
+            "description": "No trains available"
+          }
+        }
+      }
+    },
+    "/train/depart/<departure_station>/arrive/<arrival_station>/date/<departure_date>/classe/<classe>/places/<nb_ticket>": {
+      "get": {
+        "tags": [
+          "train filter"
+        ],
+        "summary": "Get all trains with a defined departure and arrival stations taking into account the departure date, number of seats and in the defined class",
+        "description": "Retrieves all trains informations with a defined departure and arrival stations taking into account the departure date, number of seats and in the defined class",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/all_train"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Incorrect data"
+          },
+          "404": {
+            "description": "No trains available"
+          }
+        }
+      }
+    },
+    "/train/depart/<departure_station>/arrive/<arrival_station>/date/<departure_date>/heure/<departure_time>": {
+      "get": {
+        "tags": [
+          "train filter"
+        ],
+        "summary": "Get all trains with a defined departure and arrival stations taking into account the departure date and time",
+        "description": "Retrieves all trains informations with a defined departure and arrival stations taking into account the departure date and time",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/all_train"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Incorrect data"
+          },
+          "404": {
+            "description": "No trains available"
+          }
+        }
+      }
+    },
+    "/train/depart/<departure_station>/arrive/<arrival_station>/date/<departure_date>/heure/<departure_time>/classe/<classe>/places/<nb_ticket>": {
+      "get": {
+        "tags": [
+          "train filter"
+        ],
+        "summary": "Get all trains with a defined departure and arrival stations taking into account the departure date and time, number of seats and in the defined class",
+        "description": "Retrieves all trains informations with a defined departure and arrival stations taking into account the departure date and time, number of seats and in the defined class",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/all_train"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Incorrect data"
+          },
+          "404": {
+            "description": "No trains available"
+          }
+        }
+      }
+    },
+    "/train/depart/<departure_station>/arrive/<arrival_station>/retour": {
+      "get": {
+        "tags": [
+          "train filter"
+        ],
+        "summary": "Get all trains with defined departure and arrival stations and their returns",
+        "description": "Retrieves all trains informations with defined departure and arrival stations and their returns",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/all_train_with_return"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Incorrect data"
+          },
+          "404": {
+            "description": "No trains available"
+          }
+        }
+      }
+    },
+    "/train/depart/<departure_station>/arrive/<arrival_station>/retour/classe/<classe>/places/<nb_ticket>": {
+      "get": {
+        "tags": [
+          "train filter"
+        ],
+        "summary": "Get all trains with a defined departure and arrival stations taking into account the number of seats and in the defined class and their returns",
+        "description": "Retrieves all trains informations with a defined departure and arrival stations taking into account the number of seats and in the defined class and their returns",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/all_train_with_return"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Incorrect data"
+          },
+          "404": {
+            "description": "No trains available"
+          }
+        }
+      }
+    },
+    "/train/depart/<departure_station>/arrive/<arrival_station>/date/<departure_date>/retour/date/<return_date>": {
+      "get": {
+        "tags": [
+          "train filter"
+        ],
+        "summary": "Get all trains with a defined departure and arrival stations taking into account the departure date and their returns",
+        "description": "Retrieves all trains informations with a defined departure and arrival stations taking into account the departure date and their returns",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/all_train_with_return"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Incorrect data"
+          },
+          "404": {
+            "description": "No trains available"
+          }
+        }
+      }
+    },
+    "/train/depart/<departure_station>/arrive/<arrival_station>/date/<departure_date>/retour/date/<return_date>/classe/<classe>/places/<nb_ticket>": {
+      "get": {
+        "tags": [
+          "train filter"
+        ],
+        "summary": "Get all trains with a defined departure and arrival stations taking into account the departure date, number of seats and in the defined class and their returns",
+        "description": "Retrieves all trains informations with a defined departure and arrival stations taking into account the departure date, number of seats and in the defined class and their returns",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/all_train_with_return"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Incorrect data"
+          },
+          "404": {
+            "description": "No trains available"
+          }
+        }
+      }
+    },
+    "/train/depart/<departure_station>/arrive/<arrival_station>/date/<departure_date>/heure/<departure_time>/retour/date/<return_date>/heure/<return_time>": {
+      "get": {
+        "tags": [
+          "train filter"
+        ],
+        "summary": "Get all trains with a defined departure and arrival stations taking into account the departure date and time and their returns",
+        "description": "Retrieves all trains informations with a defined departure and arrival stations taking into account the departure date and time and their returns",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/all_train"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Incorrect data"
+          },
+          "404": {
+            "description": "No trains available"
+          }
+        }
+      }
+    },
+    "/train/depart/<departure_station>/arrive/<arrival_station>/date/<departure_date>/heure/<departure_time>/retour/date/<return_date>/heure/<return_time>/classe/<classe>/places/<nb_ticket>": {
+      "get": {
+        "tags": [
+          "train filter"
+        ],
+        "summary": "Get all trains with a defined departure and arrival stations taking into account the departure date and time, number of seats and in the defined class and their returns",
+        "description": "Retrieves all trains informations with a defined departure and arrival stations taking into account the departure date and time, number of seats and in the defined class and their returns",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/all_train_with_return"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Incorrect data"
+          },
+          "404": {
+            "description": "No trains available"
+          }
+        }
+      }
+    },
+    "/revervation/train/<train_id>": {
+      "put": {
+        "tags": [
+          "train reservation"
+        ],
+        "requestBody": {
+          "description": "Update numbers of seats in an existent train",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/request_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "summary": "Set the new amount of seats in a train",
+        "description": "Set the new amount of seats in a train with his id, and the class and the amount of ticket in the body",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/request_response"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Reservation not possible + [Error precision]"
+          }
+        }
+      }
+    },
+    "/revervation/train/<train_id>/retour/train/<return_train_id>": {
+      "put": {
+        "tags": [
+          "train reservation"
+        ],
+        "requestBody": {
+          "description": "Update an existent pet in the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/request_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "summary": "Set the new amount of seats in the outbound and the return trains",
+        "description": "Set the new amount of seats in the outbound and the return trains with their ids, and the class and the amount of ticket in the body",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/request_response"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Reservation not possible + [Error precision]"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "all_train": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "object",
+            "properties": {
+              "departure_station": {
+                "type": "string"
+              },
+              "arrival_station": {
+                "type": "string"
+              },
+              "departure_date": {
+                "type": "string"
+              },
+              "departure_time": {
+                "type": "string"
+              },
+              "flex": {
+                "type": "string"
+              },
+              "price": {
+                "type": "number"
+              },
+              "seat": {
+                "type": "object",
+                "properties": {
+                  "first_class_seat": {
+                    "type": "integer"
+                  },
+                  "business_class_seat": {
+                    "type": "integer"
+                  },
+                  "standard_class_seat": {
+                    "type": "integer"
+                  },
+                  "total": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "all_train_with_return": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "object",
+            "properties": {
+              "departure_station": {
+                "type": "string"
+              },
+              "arrival_station": {
+                "type": "string"
+              },
+              "departure_date": {
+                "type": "string"
+              },
+              "departure_time": {
+                "type": "string"
+              },
+              "flex": {
+                "type": "string"
+              },
+              "price": {
+                "type": "number"
+              },
+              "seat": {
+                "type": "object",
+                "properties": {
+                  "first_class_seat": {
+                    "type": "integer"
+                  },
+                  "business_class_seat": {
+                    "type": "integer"
+                  },
+                  "standard_class_seat": {
+                    "type": "integer"
+                  },
+                  "total": {
+                    "type": "integer"
+                  }
+                }
+              },
+              "return": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "object",
+                    "properties": {
+                      "departure_station": {
+                        "type": "string"
+                      },
+                      "arrival_station": {
+                        "type": "string"
+                      },
+                      "departure_date": {
+                        "type": "string"
+                      },
+                      "departure_time": {
+                        "type": "string"
+                      },
+                      "flex": {
+                        "type": "string"
+                      },
+                      "price": {
+                        "type": "number"
+                      },
+                      "seat": {
+                        "type": "object",
+                        "properties": {
+                          "first_class_seat": {
+                            "type": "integer"
+                          },
+                          "business_class_seat": {
+                            "type": "integer"
+                          },
+                          "standard_class_seat": {
+                            "type": "integer"
+                          },
+                          "total": {
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "request_body": {
+        "type": "object",
+        "properties": {
+          "classe": {
+            "type": "string"
+          },
+          "nb_ticket": {
+            "type": "string"
+          }
+        }
+      },
+      "request_response": {
+        "type": "string",
+        "example": "Reservation effectuée"
+      }
+    }
+  }
+}
