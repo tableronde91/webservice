@@ -1,30 +1,29 @@
 # --- Imports Part ---
 
-from collections import defaultdict
 import logging
-from flask import Flask,render_template, request,jsonify, abort
+from collections import defaultdict
+
+from flask import Flask, abort, jsonify, render_template, request
 from flask_mysqldb import MySQL
 
 # --- Config Part ---
 
-# with open("./db.mdp") as file:
-#     mdp = file.read()
-iiens = False
+docker = True
 
 app = Flask(__name__)
-# if iiens:
-#     app.config["JSON_SORT_KEYS"] = False
-#     app.config['MYSQL_HOST'] = 'mysql.iiens.net'
-#     app.config['MYSQL_USER'] = 'root'
-#     app.config['MYSQL_PASSWORD'] = mdp
-#     app.config['MYSQL_DB'] = 'e_mennessi2021'
-
-app.config["JSON_SORT_KEYS"] = False
-app.config['MYSQL_HOST'] = 'mysql'
-app.config['MYSQL_PORT'] = 3306
-app.config['MYSQL_USER'] = 'secf'
-app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'secf'
+if docker:
+    app.config["JSON_SORT_KEYS"] = False
+    app.config['MYSQL_HOST'] = 'db'
+    app.config['MYSQL_PORT'] = 3306
+    app.config['MYSQL_USER'] = 'root'
+    app.config['MYSQL_PASSWORD'] = 'root'
+    app.config['MYSQL_DB'] = 'mysql'
+else:
+    app.config["JSON_SORT_KEYS"] = False
+    app.config['MYSQL_HOST'] = 'localhost'
+    app.config['MYSQL_USER'] = 'secf'
+    app.config['MYSQL_PASSWORD'] = ''
+    app.config['MYSQL_DB'] = 'secf'
 
 mysql = MySQL(app)
 

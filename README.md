@@ -13,9 +13,13 @@
 > .../webservice> pip install -r requirements.txt
 
 ### Lancer l'app flask
-> .../webservice> flask --app app run
+> .../webservice> flask --app '.\REST Train Filtering\FlaskApp\app\__init__.py' run
 ###### ou
-> .../webservice> python -m flask --app app run
+> .../webservice> python -m flask --app '.\REST Train Filtering\FlaskApp\app\__init__.py' run
 
 ##### Aller sur un navigateur
 > http://127.0.0.1:5000
+
+
+##### Tester les requêtes :
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/21869921-4f5bffde-fe57-45e0-aae8-93a8e9ee8f10?action=collection%2Ffork&collection-url=entityId%3D21869921-4f5bffde-fe57-45e0-aae8-93a8e9ee8f10%26entityType%3Dcollection%26workspaceId%3Db4f7b72c-3ff2-4187-ac64-0b43944985ca)
