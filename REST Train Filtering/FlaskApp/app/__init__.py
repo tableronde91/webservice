@@ -12,25 +12,25 @@ from flask_mysqldb import MySQL
 iiens = False
 
 app = Flask(__name__)
-if iiens:
-    app.config["JSON_SORT_KEYS"] = False
-    app.config['MYSQL_HOST'] = 'mysql.iiens.net'
-    app.config['MYSQL_USER'] = 'root'
-    app.config['MYSQL_PASSWORD'] = mdp
-    app.config['MYSQL_DB'] = 'e_mennessi2021'
-else:
-    app.config["JSON_SORT_KEYS"] = False
-    app.config['MYSQL_HOST'] = 'localhost'
-    app.config['MYSQL_USER'] = 'root'
-    app.config['MYSQL_PASSWORD'] = ''
-    app.config['MYSQL_DB'] = 'secf'
+# if iiens:
+#     app.config["JSON_SORT_KEYS"] = False
+#     app.config['MYSQL_HOST'] = 'mysql.iiens.net'
+#     app.config['MYSQL_USER'] = 'root'
+#     app.config['MYSQL_PASSWORD'] = mdp
+#     app.config['MYSQL_DB'] = 'e_mennessi2021'
 
+app.config["JSON_SORT_KEYS"] = False
+app.config['MYSQL_HOST'] = 'mysql'
+app.config['MYSQL_PORT'] = 3306
+app.config['MYSQL_USER'] = 'secf'
+app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_DB'] = 'secf'
 
 mysql = MySQL(app)
 
 @app.route("/")
 def hello_world():
-    return  render_template("doc.html")
+    return render_template("rr.html")
 
 # --- Data parsing Part ---
 
@@ -578,3 +578,6 @@ def update_reservation_return(train_id,return_train_id):
     except Exception as e:
         abort(400,e.args[0] + " | train : {} (train aller)".format(train_id))
 
+# Open flask app
+if __name__ == "__main__":
+    app.run(debug=True, host='0.0.0.0', port=80)
