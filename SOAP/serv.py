@@ -1,7 +1,6 @@
 import logging
 from wsgiref.simple_server import make_server
 from flask import Flask
-from flask_cors import CORS
 from spyne.application import Application
 from spyne.decorator import srpc
 from spyne.service import ServiceBase
