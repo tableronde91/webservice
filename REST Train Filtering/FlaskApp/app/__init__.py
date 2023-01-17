@@ -8,7 +8,7 @@ from flask_mysqldb import MySQL
 
 # --- Config Part ---
 
-docker = True
+docker = False
 
 app = Flask(__name__)
 if docker:
@@ -21,7 +21,7 @@ if docker:
 else:
     app.config["JSON_SORT_KEYS"] = False
     app.config['MYSQL_HOST'] = 'localhost'
-    app.config['MYSQL_USER'] = 'secf'
+    app.config['MYSQL_USER'] = 'root'
     app.config['MYSQL_PASSWORD'] = ''
     app.config['MYSQL_DB'] = 'secf'
 

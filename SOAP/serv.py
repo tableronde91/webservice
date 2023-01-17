@@ -1,6 +1,7 @@
 import logging
 from wsgiref.simple_server import make_server
-from flask import Flask
+from flask import Flask, request
+import requests
 from spyne.application import Application
 from spyne.decorator import srpc
 from spyne.service import ServiceBase
@@ -18,6 +19,12 @@ class HelloWorldService(ServiceBase):
     def say_hello(name, times):
         for i in range(times):
             yield 'Hello, %s' % name
+    @srpc(_returns=Iterable(String))
+    def get_all_trains():
+        response = requests.get('http://localhost:5000/trains')
+        trains = str(response.json())
+        yield trains
+
 
 app = Application([HelloWorldService], 'spyne.examples.hello.http',
         in_protocol=Soap11(validator='lxml'),
