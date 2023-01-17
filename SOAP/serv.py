@@ -22,8 +22,10 @@ class HelloWorldService(ServiceBase):
     @srpc(_returns=Iterable(String))
     def get_all_trains():
         response = requests.get('http://localhost:5000/trains')
-        trains = str(response.json())
-        yield trains
+        trains = response.json()
+        yield str(trains)
+        # for train in list(trains.values()):
+        #     yield str(train)
 
 
 app = Application([HelloWorldService], 'spyne.examples.hello.http',
