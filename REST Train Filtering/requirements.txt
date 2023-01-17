@@ -4,6 +4,3 @@ Flask-MySQLdb == 1.0.1
 SQLAlchemy == 1.4.42
 psycopg2_binary == 2.9.4
 Flask_Migrate == 3.1.0
-spyne == 2.14.0
-suds-jurko == 0.6
-lxml == 4.9.2

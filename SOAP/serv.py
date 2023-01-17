@@ -1,3 +1,4 @@
+import json
 import logging
 from wsgiref.simple_server import make_server
 from flask import Flask, request
@@ -6,13 +7,19 @@ from spyne.application import Application
 from spyne.decorator import srpc
 from spyne.service import ServiceBase
 from spyne.model.complex import Iterable
-from spyne.model.primitive import UnsignedInteger,String
+from spyne.model.primitive import UnsignedInteger,String, Integer
 from spyne.server.wsgi import WsgiApplication
 
 from spyne.protocol.soap import Soap11
 from spyne.server.wsgi import WsgiApplication
 
 appp = Flask(__name__)
+
+docker = False
+if docker:
+    domain = "http://localhost:8888"
+else:
+    domain = "http://127.0.0.1:5000"
 
 class HelloWorldService(ServiceBase):
     @srpc(String, UnsignedInteger, _returns=Iterable(String))
@@ -21,11 +28,19 @@ class HelloWorldService(ServiceBase):
             yield 'Hello, %s' % name
     @srpc(_returns=Iterable(String))
     def get_all_trains():
-        response = requests.get('http://localhost:5000/trains')
+        response = requests.get(domain+'/trains')
         trains = response.json()
         yield str(trains)
-        # for train in list(trains.values()):
-        #     yield str(train)
+    @srpc(Integer, String, Integer, _returns=Iterable(String))
+    def reserve_outbound(train_id,classe,places):
+        data = {
+            "classe": classe,
+            "nb_ticket": places
+        }
+        response = requests.put(domain+'/revervation/train/'+str(train_id),json=data)
+        result = response.json()
+
+        yield str(result)
 
 
 app = Application([HelloWorldService], 'spyne.examples.hello.http',
