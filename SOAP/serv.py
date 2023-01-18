@@ -15,7 +15,7 @@ from spyne.server.wsgi import WsgiApplication
 
 appp = Flask(__name__)
 
-docker = False
+docker = True
 if docker:
     domain = "http://localhost:8888"
 else:

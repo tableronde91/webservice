@@ -80,21 +80,24 @@ Et importez le fichier *secf.sql*
 Pro Tips: utiliser 2 terminaux pour lancer le serveur et le client
 
 ## Préparation du SOAP
-> .../webservice> cd SOAP
+
 ### Créer un venv et l'activer 
 (si ce n'est pas déjà fait)
-> .../webservice/SOAP> python -m venv .venv
+> .../webservice> python -m venv .venv
 #### Pour Windows (par CMD) :
-> .../webservice/SOAP> cd .venv/Scripts
-> .../webservice/SOAP/.venv/Scripts> activate.bat
+> .../webservice> cd .venv/Scripts
+> .../webservice/.venv/Scripts> activate.bat
 #### Pour Linux :
-> .../webservice/SOAP> ./.venv/Scripts/activate
+> .../webservice> ./.venv/Scripts/activate
 
 ### Installer les bibliothèques python pour l'API SOAP
-> .../webservice/SOAP/.venv/Scripts> cd ../..
-> .../webservice/SOAP> python.exe -m pip install --upgrade pip
+> .../webservice.venv/Scripts> cd ../..
+> .../webservice> python.exe -m pip install --upgrade pip
+
+> .../webservice> cd SOAP
+
 > .../webservice/SOAP> pip install -r requirements.txt
-> 
+
 /!\ Bien mettre le booléen "docker" à False dans le fichier serv.py, si vous n'utilisez pas docker /!\
 
 ![DockerOn](./imgReadMe/dockerSoap%20off.png)

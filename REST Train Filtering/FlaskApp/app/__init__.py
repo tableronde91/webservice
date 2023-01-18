@@ -8,7 +8,7 @@ from flask_mysqldb import MySQL
 
 # --- Config Part ---
 
-docker = False
+docker = True
 
 app = Flask(__name__)
 if docker:

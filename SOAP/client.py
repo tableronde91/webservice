@@ -1,7 +1,8 @@
-from suds.client import Client
-from prettytable import PrettyTable
-import json
 import ast
+import json
+
+from prettytable import PrettyTable
+from suds.client import Client
 
 hello_client = Client('http://localhost:7789/?wsdl')
 
