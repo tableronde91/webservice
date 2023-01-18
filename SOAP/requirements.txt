@@ -1,6 +1,6 @@
 spyne == 2.14.0
 suds-jurko == 0.6
 lxml == 4.9.2
-PrettyTable == 1.1.0
+prettytable == 3.6.0
 requests == 2.28.2
 Flask == 2.2.2
